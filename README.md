@@ -1,2 +1,1 @@
-# ruby_study
- 
+# Yousuke_Yagishita_study
