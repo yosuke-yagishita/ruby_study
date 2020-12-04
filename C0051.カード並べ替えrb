@@ -1,0 +1,18 @@
+card = []
+calc_array = []
+card = gets.split(' ').map(&:to_i)
+card_array = card.permutation.to_a
+card_array.each do |card_array|
+    calc_array << (card_array[0] * 10 + card_array[1]) + (card_array[2] * 10 + card_array[3])
+end
+result_array = calc_array.uniq
+puts result_array.max
+
+# 別解
+# card = []
+# calc = []
+# card = gets.split(' ').map(&:to_i)
+# card_sort = card.sort
+# calc << card_sort[3] * 10 + card_sort[1]
+# calc << card_sort[2] * 10 + card_sort[0]
+# puts calc[0] + calc[1]
