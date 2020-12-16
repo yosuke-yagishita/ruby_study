@@ -3,6 +3,7 @@ map_data = []
 height.times do
     map_data << gets.chomp.split('').map(&:to_s)
 end
+map_data[position_y][position_x] = '*'
 move_past = [-1, 0]
 move_current = []
 count.times do
@@ -18,19 +19,24 @@ count.times do
         move_current = [0, -1]
     end
     move_value.times do
-        if 0 > position_y + move_current[0] || height - 1 < position_y + move_current[0] || map_data[position_y + move_current[0][position_x]] == '#'
-            puts "#{position_y} #{position_x}"
-            puts 'Stop'
+        if 0 > position_y + move_current[0] || height - 1 < position_y + move_current[0] || map_data[position_y + move_current[0]][position_x] == '#'
+            height.times do |h|
+                puts map_data[h].join
+            end
             return
         elsif 0 > position_x + move_current[1] || width - 1 < position_x + move_current[1] || map_data[position_y][position_x + move_current[1]] == '#'
-            puts "#{position_y} #{position_x}"
-            puts 'Stop'
+            height.times do |h|
+                puts map_data[h].join
+            end
             return
-        else
-            position_y = position_y + move_current[0]
-            position_x = position_x + move_current[1]
         end
+        position_y = position_y + move_current[0]
+        position_x = position_x + move_current[1]
+        map_data[position_y][position_x] = '*'
     end
-    puts "#{position_y} #{position_x}"
     move_past = move_current
+end
+
+height.times do |h|
+    puts map_data[h].join
 end
