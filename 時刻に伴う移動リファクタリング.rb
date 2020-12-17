@@ -48,6 +48,7 @@ end
 
 i = 0
 while i < 100
+    map_data[@position_y][@position_x] = '*'
     if i == td[mcount][0].to_i
         move(direct[@dcount%4], td[mcount][1])
         mcount += 1
@@ -55,11 +56,11 @@ while i < 100
         move(direct[@dcount%4], 'S')
     end
 
-    if 0 <= @position_y && height > @position_y && 0 <= @position_x && width > @position_x && map_data[@position_y][@position_x] != '#'
+    if 0 <= @position_y && height > @position_y && 0 <= @position_x && width > @position_x && map_data[@position_y][@position_x] == '.'
         puts "#{@position_y} #{@position_x}"
     else
         puts 'Stop'
-        return
+        break
     end
     i += 1
 end
