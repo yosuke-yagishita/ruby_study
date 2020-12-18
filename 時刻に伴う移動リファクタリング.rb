@@ -45,7 +45,7 @@ end
 count.times do
     td << gets.chomp.split(' ').map(&:to_s)
 end
-
+td << [100, ]
 i = 0
 while i < 100
     map_data[@position_y][@position_x] = '*'
