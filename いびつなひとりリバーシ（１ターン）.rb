@@ -88,7 +88,6 @@ while l <= 1
     l += 2
 end
 
-
 map_data[position_y][position_x] = '*'
 
 height.times do |h|

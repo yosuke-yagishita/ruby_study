@@ -174,11 +174,15 @@ end
 count.times do |n|
     position_y = put_stone_A[n][0]
     position_x = put_stone_A[n][1]
-    reversi_A(position_y, position_x, height, width)
+    unless @map_data[position_y][position_x] == '#'
+        reversi_A(position_y, position_x, height, width)
+    end
 
     position_y = put_stone_B[n][0]
     position_x = put_stone_B[n][1]
-    reversi_B(position_y, position_x, height, width)
+    unless @map_data[position_y][position_x] == '#'
+        reversi_B(position_y, position_x, height, width)
+    end
 end
 
 height.times do |n|

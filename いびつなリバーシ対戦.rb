@@ -77,88 +77,88 @@ put_ston_info = [
 ]
 
 def reversi(id, position_y, position_x, height, width)
-    unless @map_data[position_y][position_x] == '#'
-        diagonal_i = -1
-        while diagonal_i <= 1
-            diagonal_j = -1
-            while diagonal_j <= 1
-                diagonal_k = 1
-                while diagonal_k > 0
-                    if position_y + (diagonal_i * diagonal_k) == -1 || position_y + (diagonal_i * diagonal_k) == height || position_x + (diagonal_j * diagonal_k) == -1 || position_x + (diagonal_j * diagonal_k) == width || @map_data[position_y + (diagonal_i * diagonal_k)][position_x + (diagonal_j * diagonal_k)] == '#'
-                        break
-                    end
-                    if @map_data[position_y + (diagonal_i * diagonal_k)][position_x + (diagonal_j * diagonal_k)] == "#{id}"
-                        l = [position_y + (diagonal_i * diagonal_k), position_y].min
-                        m = [position_x + (diagonal_j * diagonal_k), position_x].min
-                        n = [position_x + (diagonal_j * diagonal_k), position_x].max
-                        while l <= [position_y + (diagonal_i * diagonal_k), position_y].max
-                            if diagonal_i == diagonal_j 
-                                @map_data[l][m] = "#{id}"
-                                l += 1
-                                m += 1
-                            else
-                                @map_data[l][n] = "#{id}"
-                                l += 1
-                                n -= 1
-                            end
+    diagonal_i = -1
+    while diagonal_i <= 1
+        diagonal_j = -1
+        while diagonal_j <= 1
+            diagonal_k = 1
+            while diagonal_k > 0
+                if position_y + (diagonal_i * diagonal_k) == -1 || position_y + (diagonal_i * diagonal_k) == height || position_x + (diagonal_j * diagonal_k) == -1 || position_x + (diagonal_j * diagonal_k) == width || @map_data[position_y + (diagonal_i * diagonal_k)][position_x + (diagonal_j * diagonal_k)] == '#'
+                    break
+                end
+                if @map_data[position_y + (diagonal_i * diagonal_k)][position_x + (diagonal_j * diagonal_k)] == "#{id}"
+                    l = [position_y + (diagonal_i * diagonal_k), position_y].min
+                    m = [position_x + (diagonal_j * diagonal_k), position_x].min
+                    n = [position_x + (diagonal_j * diagonal_k), position_x].max
+                    while l <= [position_y + (diagonal_i * diagonal_k), position_y].max
+                        if diagonal_i == diagonal_j 
+                            @map_data[l][m] = "#{id}"
+                            l += 1
+                            m += 1
+                        else
+                            @map_data[l][n] = "#{id}"
+                            l += 1
+                            n -= 1
                         end
-                        break
-                    end
-                    diagonal_k += 1
-                end
-                diagonal_j += 2
-            end
-            diagonal_i += 2
-        end
-
-        cross_i = -1
-        while cross_i <= 1
-            cross_j = 1
-            while cross_j > 0
-                if position_y + (cross_i * cross_j) == -1 || position_y + (cross_i * cross_j) == height || @map_data[position_y + (cross_i * cross_j)][position_x] == '#'
-                    break
-                end
-                if @map_data[position_y + (cross_i * cross_j)][position_x] == "#{id}"
-                    cross_k = [position_y + (cross_i * cross_j), position_y].min
-                    while cross_k <= [position_y + (cross_i * cross_j), position_y].max
-                        @map_data[cross_k][position_x] = "#{id}"
-                        cross_k += 1
                     end
                     break
                 end
-                cross_j += 1
+                diagonal_k += 1
             end
-            cross_i += 2
+            diagonal_j += 2
         end
-
-        cross_l = -1
-        while cross_l <= 1
-            cross_m = 1
-            while cross_m > 0
-                if position_x + (cross_l * cross_m) == -1 || position_x + (cross_l * cross_m) == height || @map_data[position_y][position_x + (cross_l * cross_m)] == '#'
-                    break
-                end
-                if @map_data[position_y][position_x + (cross_l * cross_m)] == "#{id}"
-                    cross_n = [position_x + (cross_l * cross_m), position_x].min
-                    while cross_n <= [position_x + (cross_l * cross_m), position_x].max
-                        @map_data[position_y][cross_n] = "#{id}"
-                        cross_n += 1
-                    end
-                    break
-                end
-                cross_m += 1
-            end
-            cross_l += 2
-        end
-        @map_data[position_y][position_x] = "#{id}"
+        diagonal_i += 2
     end
+
+    cross_i = -1
+    while cross_i <= 1
+        cross_j = 1
+        while cross_j > 0
+            if position_y + (cross_i * cross_j) == -1 || position_y + (cross_i * cross_j) == height || @map_data[position_y + (cross_i * cross_j)][position_x] == '#'
+                break
+            end
+            if @map_data[position_y + (cross_i * cross_j)][position_x] == "#{id}"
+                cross_k = [position_y + (cross_i * cross_j), position_y].min
+                while cross_k <= [position_y + (cross_i * cross_j), position_y].max
+                    @map_data[cross_k][position_x] = "#{id}"
+                    cross_k += 1
+                end
+                break
+            end
+            cross_j += 1
+        end
+        cross_i += 2
+    end
+
+    cross_l = -1
+    while cross_l <= 1
+        cross_m = 1
+        while cross_m > 0
+            if position_x + (cross_l * cross_m) == -1 || position_x + (cross_l * cross_m) == height || @map_data[position_y][position_x + (cross_l * cross_m)] == '#'
+                break
+            end
+            if @map_data[position_y][position_x + (cross_l * cross_m)] == "#{id}"
+                cross_n = [position_x + (cross_l * cross_m), position_x].min
+                while cross_n <= [position_x + (cross_l * cross_m), position_x].max
+                    @map_data[position_y][cross_n] = "#{id}"
+                    cross_n += 1
+                end
+                break
+            end
+            cross_m += 1
+        end
+        cross_l += 2
+    end
+    @map_data[position_y][position_x] = "#{id}"
 end
 
 count.times do |n|
     id = put_ston_info[n][0]
     position_y = put_ston_info[n][1]
     position_x = put_ston_info[n][2]
-    reversi(id, position_y, position_x, height, width)
+    unless @map_data[position_y][position_x] == "#"
+        reversi(id, position_y, position_x, height, width)
+    end
 end
 
 height.times do |n|
